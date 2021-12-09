@@ -1,0 +1,25 @@
+:root {
+    --universal-height: 100vh;
+}
+
+body {
+    margin: 0;
+    background: currentColor;
+}
+
+.moonContainer {
+    height: auto;
+    width: 100px;
+    margin: auto;
+    font-size: 100px;
+    position: relative;
+}
+
+
+.login_card {
+    background: indigo;
+}
+
+nav {
+    background: indigo;
+}

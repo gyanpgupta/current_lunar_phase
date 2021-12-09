@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'lunar_phase/css/style.css' %}">
+{% endblock style %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height:80vh">
+                <h1 class="text-center text-white"></h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'lunar_phase/js/style.js' %}"></script>
+{% endblock script %}
