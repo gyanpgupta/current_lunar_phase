@@ -13,6 +13,8 @@ $(function () {
         success: function (data) {
             const response = data;
             $('h1').text(response.current_phase);
+            $('#timezone').text('Current Timezone: ' + response.timezone);
+            $('#lunar_phase').text('Current Lunar Phase: ' + response.current_phase);
         }
     });
 })

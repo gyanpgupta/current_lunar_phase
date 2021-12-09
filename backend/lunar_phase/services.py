@@ -1,11 +1,12 @@
 import datetime
 import ephem
 import pytz
+from django.conf import settings
 
 
 class Moon:
-    def __init__(self, tz="Asia/Kolkata"):
-        self.timezone = tz
+    def __init__(self, tz=None):
+        self.timezone = tz if tz else settings.TIME_ZONE
         self.moon = ephem
         self.date = datetime.datetime.now(tz=pytz.timezone(tz))
 
