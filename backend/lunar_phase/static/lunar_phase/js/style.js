@@ -2,7 +2,7 @@
 $(function () {
     const token = localStorage.getItem("token");
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const url = '/api/current_lp' + '?timezone=' + timezone
+    const url = '/api/lunar_phase' + '?timezone=' + timezone
     $.ajax({
         type: 'GET',
         dataType: 'json',

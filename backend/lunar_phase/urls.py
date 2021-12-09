@@ -5,5 +5,5 @@ from django.urls import path
 
 urlpatterns = [
     path('', (CurrentLunarPhase.as_view()), name="current_lunar_phase"),
-    path('api/current_lp', (CurrentPhaseDetailAPI.as_view()), name="current_lp_api"),
+    path('api/lunar_phase', (CurrentPhaseDetailAPI.as_view()), name="lunar_phase"),
 ]
