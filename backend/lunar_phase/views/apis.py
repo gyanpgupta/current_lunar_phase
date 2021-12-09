@@ -10,7 +10,7 @@ class CurrentPhaseDetailAPI(views.APIView):
     authentication_classes = [BasicAuthentication]
 
     def get(self, request):
-        timezone = self.request.GET.get('timezone', 'Asia/Kolkata')
+        timezone = self.request.GET.get('timezone')
         moon = Moon(tz=timezone)
         phase = moon.get_moon_phase()
         data = {"status": True, "current_phase": phase}

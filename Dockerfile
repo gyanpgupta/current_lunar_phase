@@ -17,10 +17,10 @@ RUN python -m venv /py && \
     /py/bin/pip install -r /requirements.txt && \
     apk del .tmp-deps && \
     adduser --disabled-password --no-create-home backend && \
-    mkdir -p /vol/web/static && \
-    mkdir -p /vol/web/media && \
-    chown -R backend:backend /vol && \
-    chmod -R 755 /vol && \
+    mkdir -p /extra/web/static && \
+    mkdir -p /extra/web/media && \
+    chown -R backend:backend /extra && \
+    chmod -R 755 /extra && \
     chmod -R +x /scripts
 
 ENV PATH="/scripts:/py/bin:$PATH"

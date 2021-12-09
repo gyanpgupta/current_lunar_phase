@@ -1,13 +1,15 @@
 
 $(function () {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const url = '/api/current_lp' + '?timezone=' + timezone
     $.ajax({
         type: 'GET',
         dataType: 'json',
         beforeSend: function (xhr){
             xhr.setRequestHeader('Authorization', "Basic " + token);
         },
-        url: '/api/current_lp',
+        url: url,
         success: function (data) {
             const response = data;
             $('h1').text(response.current_phase);
