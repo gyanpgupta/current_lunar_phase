@@ -8,7 +8,6 @@ class Moon:
     def __init__(self, tz=None):
         self.timezone = tz if tz else settings.TIME_ZONE
         self.moon = ephem
-        self.date = datetime.datetime.now(tz=pytz.timezone(tz))
 
     def get_moon_phase(self):
         previous_phase, next_phase = None, None
@@ -46,62 +45,42 @@ class Moon:
             ephem.next_last_quarter_moon(date)
         ).replace(tzinfo=pytz.timezone(self.timezone))
         moon_phases = [
-            (date, "date"),
-            (previous_new_moon, "previous_new_moon"),
-            (previous_first_quarter_moon, "previous_first_quarter_moon"),
             (previous_full_moon, "previous_full_moon"),
             (previous_last_quarter_moon, "previous_last_quarter_moon"),
-            (next_new_moon, "next_new_moon"),
-            (next_first_quarter_moon, "next_first_quarter_moon"),
+            (previous_new_moon, "previous_new_moon"),
+            (previous_first_quarter_moon, "previous_first_quarter_moon"),
+            (date, "date"),
             (next_full_moon, "next_full_moon"),
             (next_last_quarter_moon, "next_last_quarter_moon"),
+            (next_new_moon, "next_new_moon"),
+            (next_first_quarter_moon, "next_first_quarter_moon"),
         ]
         moon_phases.sort()
-
         for index, phase in enumerate(moon_phases):
             if phase[1] == "date":
                 previous_phase = moon_phases[index - 1][1]
                 next_phase = moon_phases[index + 1][1]
 
         if (
-            previous_phase == "previous_first_quarter_moon"
-            and next_phase == "previous_full_moon"
+            previous_phase == "previous_last_quarter_moon"
+            and next_phase == "next_new_moon"
         ):
-            return "Waxing Gibbous"
+            return 'Waning Crescent'
         elif (
             previous_phase == "previous_full_moon"
-            and next_phase == "previous_last_quarter_moon"
+            and next_phase == "next_last_quarter_moon"
         ):
-            return "Waning Gibbous"
+            return 'Waning Gibbous'
         elif (
-            previous_phase == "previous_last_quarter_moon"
-            and next_phase == "previous_new_moon"
+            previous_phase == "previous_first_quarter_moon"
+            and next_phase == "next_full_moon"
         ):
-            return "Waning Crescent"
+            return 'Waxing Gibbous'
         elif (
             previous_phase == "previous_new_moon"
             and next_phase == "next_first_quarter_moon"
         ):
-            return "Waxing Crescent"
-        elif (
-            previous_phase == "next_first_quarter_moon"
-            and next_phase == "next_full_moon"
-        ):
-            return "Waxing Gibbous"
-        elif (
-            previous_phase == "next_full_moon"
-            and next_phase == "next_last_quarter_moon"
-        ):
-            return "Waning Gibbous"
-        elif (
-            previous_phase == "next_last_quarter_moon" and next_phase == "next_new_moon"
-        ):
-            return "Waning Crescent"
-        elif (
-            previous_phase == "previous_last_quarter_moon"
-            and next_phase == "next_new_moon"
-        ):
-            return "Waning Crescent"
+            return 'Waxing Crescent'
 
 
 if __name__ == "__main__":
